@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Protected Page</title>
+    <style>
+        #content {
+            display: none;
+        }
+        .button {
+            margin: 5px;
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="pinPrompt">
+    <h2>Please enter the pin (1-9):</h2>
+    <div id="buttons">
+        <button class="button" onclick="enterPin(1)">1</button>
+        <button class="button" onclick="enterPin(2)">2</button>
+        <button class="button" onclick="enterPin(3)">3</button>
+        <button class="button" onclick="enterPin(4)">4</button>
+        <button class="button" onclick="enterPin(5)">5</button>
+        <button class="button" onclick="enterPin(6)">6</button>
+        <button class="button" onclick="enterPin(7)">7</button>
+        <button class="button" onclick="enterPin(8)">8</button>
+        <button class="button" onclick="enterPin(9)">9</button>
+    </div>
+    <p id="message"></p>
+</div>
+
+<div id="content">
+    <h1>Welcome to the protected content!</h1>
+    <p>This is the content that is protected by the pin.</p>
+</div>
+
+<script>
+    let enteredPin = '';
+    const correctPin = '12345'; // Change this to your desired pin (as a string)
+
+    function enterPin(number) {
+        enteredPin = number.toString(); // Convert number to string
+        checkPin();
+    }
+
+    function checkPin() {
+        const message = document.getElementById('message');
+        const content = document.getElementById('content');
+
+        // Check if the entered pin matches the correct pin
+        if (enteredPin === correctPin) {
+            message.textContent = '';
+            content.style.display = 'block';
+            document.getElementById('pinPrompt').style.display = 'none';
+        } else {
+            message.textContent = 'Incorrect pin. Please try again.';
+        }
+    }
+</script>
+
+</body>
+</html>
